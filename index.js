@@ -4,6 +4,7 @@ const { program } = require('commander');
 
 const calculate = require('./lib/calculate.js');
 const rollback = require('./lib/rollback.js');
+const output = require('./lib/output.js');
 
 program
     .name(require('./package.json').name)
@@ -18,5 +19,10 @@ program.command('calculate').alias('+')
 program.command('rollback').alias('-')
     .description('Roll back to remove the latest contest.')
     .action(rollback);
+
+program.command('output').alias('*')
+    .description('Output the contest in markdown.')
+    .arguments('<contest>')
+    .action(output);
 
 program.parse(process.argv);
